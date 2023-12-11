@@ -21,8 +21,8 @@ dependencies:
     specifier: ^14.0.3
     version: 14.0.3(eslint@8.55.0)(typescript@5.3.3)
   framer-motion:
-    specifier: ^10.16.15
-    version: 10.16.15(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^10.16.16
+    version: 10.16.16(react-dom@18.2.0)(react@18.2.0)
   next:
     specifier: ^14.0.3
     version: 14.0.3(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
@@ -3241,8 +3241,8 @@ packages:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
     dev: true
 
-  /framer-motion@10.16.15(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-BapW1EKc/Sgph1rKEwL9bFt2B79z7bu7jN4Up1jGUaTE78WBsVO+6eCmoUZsQH0hHtRUDnnTqjjBbM7dk9Kp8A==}
+  /framer-motion@10.16.16(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-je6j91rd7NmUX7L1XHouwJ4v3R+SO4umso2LUcgOct3rHZ0PajZ80ETYZTajzEXEl9DlKyzjyt4AvGQ+lrebOw==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0

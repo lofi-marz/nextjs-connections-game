@@ -6,7 +6,11 @@ const queryClient = new QueryClient();
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (
         <QueryClientProvider client={queryClient}>
-            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <ThemeProvider
+                attribute="class"
+                defaultTheme="dark"
+                enableSystem
+                >
                 <Component {...pageProps} />
             </ThemeProvider>
         </QueryClientProvider>

@@ -57,20 +57,22 @@ export function ModalDialog({
                 <MotionModalOverlay
                     isOpen
                     onOpenChange={onOpenChange}
-                    className="fixed left-0 top-0 z-50 flex h-screen w-screen flex-col items-center justify-start pt-48 text-xl"
+                    className="fixed left-0 top-0 z-50 flex h-screen w-screen flex-col items-center justify-center bg-black/50 px-2 text-xl lg:pt-24"
                     variants={dialogBoxContainerVariants}
                     initial="hide"
                     animate="show"
                     exit="hide">
                     <MotionModal
                         className={cn(
-                            'relative flex w-full max-w-xl flex-col items-center justify-center gap-6  rounded-xl bg-primary-400 font-sans text-base text-light drop-shadow',
+                            'relative -mt-48 flex w-full max-w-xl flex-col  items-center justify-center gap-6  rounded-xl bg-primary-400 font-sans text-base text-light drop-shadow',
                             className
                         )}
                         variants={dialogBoxVariants}>
-                        <Dialog className="h-full w-full p-6 px-5">
+                        <Dialog className="flex h-full w-full flex-col items-center gap-6 p-6 px-5">
                             {title && (
-                                <Heading className="py-3 text-xl font-bold lg:text-3xl" slot='title'>
+                                <Heading
+                                    className="py-3 text-xl font-bold lg:text-3xl"
+                                    slot="title">
                                     {title}
                                 </Heading>
                             )}
@@ -81,7 +83,7 @@ export function ModalDialog({
                                     <FaTimes />
                                 </button>
                             )}
-                           
+
                             <motion.div
                                 className={cn('flex w-full flex-col gap-4')}>
                                 {children}

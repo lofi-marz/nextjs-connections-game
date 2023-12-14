@@ -15,7 +15,7 @@ export default function Home() {
                 <title>Hello World!</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className="flex h-screen w-full flex-col items-center justify-center ">
+            <div className="flex min-h-screen w-full flex-col items-center justify-center ">
                 <Nav />
                 <GameWindow />
             </div>

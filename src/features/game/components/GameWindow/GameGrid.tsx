@@ -30,7 +30,7 @@ function GameCell({
     return (
         <MotionButton
             className={cn(
-                'relative flex h-full w-full items-center justify-center rounded border-primary-400 bg-theme-invert uppercase text-theme transition-all hover:border-4 pressed:scale-95',
+                'relative flex h-full w-full items-center justify-center rounded border-primary-400 bg-theme-invert text-xs uppercase text-theme transition-all hover:border-4 pressed:scale-95  sm:text-base lg:text-lg',
                 selected && 'bg-primary-400'
             )}
             onPress={() => onClick(value)}
@@ -89,7 +89,7 @@ export function GameGrid({ className }: WithClassNameProps) {
         <AnimatePresence mode="popLayout">
             <motion.div
                 className={cn(
-                    'mx-auto grid aspect-square max-h-screen w-full max-w-[100%] grid-cols-4 grid-rows-4 gap-2 font-bold',
+                    'mx-auto grid aspect-square max-h-screen w-full max-w-[100%] grid-cols-4 grid-rows-4 gap-2 font-bold lg:aspect-[1.618/1]',
                     className
                 )}
                 key={game.grid.join()}>

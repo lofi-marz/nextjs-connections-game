@@ -1,3 +1,4 @@
+import { GameState } from '@/features/game/types';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -14,6 +15,8 @@ export function getGameRound(): number {
 
     return daysDifference;
 }
+
+
 
 export function shuffleArray<T>(array: T[]) {
     const newArray = [...array];

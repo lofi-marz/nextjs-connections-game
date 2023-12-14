@@ -9,8 +9,8 @@ export function Nav() {
     const [dialogOpen, setDialogOpen] = useState(false);
     const desktop = useMediaQuery('md');
     return (
-        <nav className="fixed top-0 flex w-full flex-row justify-between p-8 text-2xl">
-            <div className="flex flex-row items-center justify-center gap-[0.5ch] rounded pr-2 font-bold transition-all hover:-translate-y-1">
+        <nav className="fixed top-0 flex w-full flex-row justify-between p-2 text-2xl md:p-8">
+            <div className="flex flex-row items-center justify-center gap-[0.75ch] rounded pr-2 text-sm font-bold transition-all hover:-translate-y-1 sm:text-xl">
                 <div className="h-fit w-fit rounded ">
                     <Logo />
                 </div>

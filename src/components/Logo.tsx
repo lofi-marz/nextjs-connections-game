@@ -8,7 +8,7 @@ export function Logo(
         <div
             {...props}
             className={cn(
-                'grid aspect-square h-12 grid-cols-3 grid-rows-3 gap-0.5 overflow-clip rounded border-2 border-theme-invert bg-theme-invert',
+                'grid aspect-square h-8 grid-cols-3 grid-rows-3 gap-0.5 overflow-clip rounded border-2 border-theme-invert bg-theme-invert lg:h-12',
                 props.className
             )}>
             <div className="col-span-2 row-span-1 bg-red-500" />

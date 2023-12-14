@@ -7,7 +7,7 @@ function GameControlButton(props: ButtonProps) {
         <Button
             {...props}
             className={cn(
-                'rounded bg-theme-invert p-2 text-xl font-bold text-theme transition-all hover:scale-105 pressed:scale-95 disabled:bg-theme-invert disabled:brightness-75 lg:p-4',
+                'rounded bg-theme-invert p-2 text-center text-sm font-bold text-theme transition-all hover:scale-105 pressed:scale-95 disabled:bg-theme-invert disabled:brightness-75 sm:text-lg md:p-4 md:text-xl',
                 props.className
             )}
         />

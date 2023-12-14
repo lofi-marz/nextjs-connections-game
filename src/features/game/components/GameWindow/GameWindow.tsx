@@ -39,8 +39,9 @@ function GameRemainingShots() {
     console.log(shots);
     return (
         <motion.div
-            className="grid grid-cols-5 items-center justify-center gap-2"
-            layout>
+            className="grid grid-cols-4 items-center justify-center gap-2"
+            layout
+            title={`${shots.length} guesses remaining`}>
             <AnimatePresence mode="sync">
                 {shots.map((full, i) => (
                     <motion.div
@@ -63,7 +64,7 @@ function GameRemainingShots() {
 export function GameWindow() {
     return (
         <div className="mx-auto flex w-full flex-col">
-            <div className="mx-auto flex w-full max-w-2xl flex-col items-center justify-center gap-6 p-4 sm:p-12">
+            <div className="mx-auto flex w-full max-w-xl flex-col items-center justify-center gap-6 p-4 pt-24 sm:p-12 sm:pt-24 lg:max-w-3xl">
                 <GameGrid />
                 <GameRemainingShots />
                 <GameControls />

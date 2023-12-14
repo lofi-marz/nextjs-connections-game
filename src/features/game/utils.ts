@@ -1,4 +1,4 @@
-import { MAX_GUESSES } from 'consts';
+import { MAX_GUESSES } from '../../consts';
 import { GameDifficulty, GameGroup, GameState } from './types';
 
 export function findMatchingGroup(guess: string[], state: GameState) {
@@ -53,4 +53,17 @@ export function gameToShareMessage(
     ].join('\n');
 
     return shareMessage;
+}
+
+export function checkGameEndState(state: GameState) {
+    if (countRemainingGuesses(state) === 0) return 'lose';
+    if (
+        state.groups.every(({ members }) =>
+            state.guesses.find((guess) =>
+                members.every((m) => guess.includes(m))
+            )
+        )
+    )
+        return 'win';
+    return null;
 }

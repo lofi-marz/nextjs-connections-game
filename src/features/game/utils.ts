@@ -67,3 +67,41 @@ export function checkGameEndState(state: GameState) {
         return 'win';
     return null;
 }
+
+export function createTestGame() {
+    const emptyGame: GameState = {
+        day: 0,
+        groups: [],
+        guesses: [],
+        selected: [],
+        grid: [],
+    };
+    let testGame: GameState = {
+        ...emptyGame,
+        groups: [
+            {
+                members: ['bulbasaur', 'bellsprout', 'roserade', 'oddish'],
+                reason: 'Grass-Poison Pokemon',
+                difficulty: 0,
+            },
+            {
+                members: ['venusaur', 'oinkologne', 'weavile', 'croagunk'],
+                reason: 'Gender Differences',
+                difficulty: 1,
+            },
+            {
+                members: ['togepi', 'pichu', 'snom', 'golbat'],
+                reason: 'Evolve when they are leveled up with enough friendship',
+                difficulty: 2,
+            },
+            {
+                members: ['weedle', 'kakuna', 'beedrill', 'pidgey'],
+                reason: 'Gen I Pokemon',
+                difficulty: 3,
+            },
+        ],
+    };
+
+    testGame.grid = testGame.groups.flatMap((group) => group.members);
+    return testGame;
+}

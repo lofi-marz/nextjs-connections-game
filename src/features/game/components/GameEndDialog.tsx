@@ -12,7 +12,7 @@ export function GameEndDialog({
     day: number;
     gameEndState: GameEndState;
 }) {
-    const game = useGameStore();
+    const game = useGameStore((state) => state);
 
     const hasWon = gameEndState === 'win';
 

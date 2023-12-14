@@ -14,6 +14,7 @@
         "clsx": "^2.0.0",
         "eslint-config-next": "^14.0.4",
         "framer-motion": "^10.16.16",
+        "mongodb": "^6.3.0",
         "next": "^14.0.4",
         "next-themes": "^0.2.1",
         "pokenode-ts": "^1.20.0",
@@ -26,6 +27,7 @@
         "sharp": "^0.33.0",
         "tailwind-merge": "^2.1.0",
         "tailwindcss-react-aria-components": "1.0.0-rc.0",
+        "zod": "^3.22.4",
         "zustand": "^4.4.7"
     },
     "devDependencies": {
@@ -48,4 +50,5 @@
         "typescript": "^5.3.3",
         "vitest": "^1.0.4"
     }
+    
 }

@@ -1,9 +1,26 @@
-export type DailyGameDocument = {
-    day: number;
-    start: string;
-    end: string;
-};
-export type GameDifficulty = 0 | 1 | 2 | 3;
+import { MAX_SELECTED } from 'consts';
+import { z } from 'zod';
+
+export type GameDifficulty = number; //TODO: Figure this out
+const GameDifficultySchema: z.ZodType<GameDifficulty> = z
+    .number()
+    .int()
+    .positive()
+    .lte(3);
+export const DailyGameDocumentSchema = z.object({
+    day: z.number(),
+    groups: z.array(
+        z.object({
+            reason: z.string(),
+            members: z.array(z.string()).length(MAX_SELECTED),
+            difficulty: GameDifficultySchema,
+        })
+    ),
+});
+
+export type DailyGameDocument = z.infer<typeof DailyGameDocumentSchema>;
+type GameGroupWithIds = GameGroup; //Semantic difference for now
+
 export type GameGroup = {
     reason: string;
     members: string[];
@@ -11,6 +28,7 @@ export type GameGroup = {
 };
 type GroupMember = string;
 export type GameState = {
+    day: number;
     groups: GameGroup[];
     selected: GroupMember[];
     guesses: GroupMember[][];
@@ -23,6 +41,7 @@ export type GameActions = {
     select: (word: string) => void;
     shuffle: () => void;
     deselectAll: () => void;
+    initializeGame: (day: number, groups: GameGroup[]) => void;
 };
 
 export type GameStore = GameState & GameActions;

@@ -10,7 +10,14 @@ export function DarkModeSpacer() {
 }
 
 export function DarkModeToggle({ className }: { className?: string }) {
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
     const { resolvedTheme, setTheme } = useTheme();
+
+    console.log(resolvedTheme);
+    if (!mounted) return null;
     //TODO: The animation on hover is a little slow but it does work
     return (
         <motion.button

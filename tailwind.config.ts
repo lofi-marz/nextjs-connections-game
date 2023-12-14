@@ -19,6 +19,7 @@ const t: Config = {
         extend: {
             fontFamily: {
                 sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
+                title: ['var(--font-title)', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 primary: colors.emerald,
@@ -41,7 +42,7 @@ const t: Config = {
         reactAria,
         plugin(function ({ addUtilities, theme }) {
             addUtilities({
-                root: {
+                '.light': {
                     '--theme': theme('colors.light'),
                     '--theme-invert': theme('colors.dark'),
                 },

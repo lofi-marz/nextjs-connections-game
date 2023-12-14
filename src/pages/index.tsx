@@ -2,6 +2,7 @@ import { GameGrid, GameWindow } from '@/features/game/components';
 import { sans } from '@/styles/fonts';
 import { cn } from '@/utils/utils';
 import Head from 'next/head';
+import { Nav } from '../components';
 
 export default function Home() {
     return (
@@ -15,7 +16,8 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className="flex h-screen w-full flex-col items-center justify-center ">
-                <GameWindow/>
+                <Nav />
+                <GameWindow />
             </div>
         </main>
     );

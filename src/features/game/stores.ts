@@ -44,14 +44,12 @@ export const useGameStore = create<GameStore>()((set) => ({
     ...testGame,
     select: (word: string) =>
         set((state) => {
-            
+            if (countRemainingGuesses(state) <= 0) return state;
             if (state.selected.includes(word)) {
                 return {
                     ...state,
                     selected: state.selected.filter((w) => w != word),
                 };
-            } else {
-                if (countRemainingGuesses(state) <= 0) return state;
             }
             if (state.selected.length === MAX_SELECTED) return state;
             return { ...state, selected: [...state.selected, word] };
@@ -62,6 +60,7 @@ export const useGameStore = create<GameStore>()((set) => ({
             if (!members) members = state.selected;
             if (members.length < MAX_SELECTED) return state;
             const match = findMatchingGroup(members, state);
+
             if (match) {
                 console.log('Match!', match);
                 return {

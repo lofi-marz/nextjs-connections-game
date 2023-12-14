@@ -6,7 +6,7 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 import plugin from 'tailwindcss/plugin';
-
+import reactAria from 'tailwindcss-react-aria-components';
 const t: Config = {
     content: [
         './pages/**/*.{js,ts,jsx,tsx}',
@@ -38,6 +38,7 @@ const t: Config = {
     plugins: [
         forms,
         typography,
+        reactAria,
         plugin(function ({ addUtilities, theme }) {
             addUtilities({
                 root: {

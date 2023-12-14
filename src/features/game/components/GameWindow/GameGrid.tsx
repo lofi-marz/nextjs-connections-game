@@ -5,12 +5,18 @@ import { WithChildrenProps, WithClassNameProps } from 'types';
 import { useGameStore } from '../../stores';
 import { AnimatePresence, Variants, motion } from 'framer-motion';
 import { GameGroup } from '../../types';
-import { findMatchingGroup, getMatchingGroups } from '../../utils';
+import {
+    findMatchingGroup,
+    gameToShareMessage,
+    getMatchingGroups,
+} from '../../utils';
+import { Button } from 'react-aria-components';
 
 const gameCellVariants: Variants = {
     hide: {},
     show: {},
 };
+const MotionButton = motion(Button);
 function GameCell({
     value,
     children,
@@ -22,17 +28,17 @@ function GameCell({
     selected: boolean;
 } & WithChildrenProps) {
     return (
-        <motion.button
+        <MotionButton
             className={cn(
-                'relative flex h-full w-full items-center justify-center rounded border-primary-400 bg-theme-invert uppercase text-theme transition-all hover:border-4 active:scale-95',
+                'relative flex h-full w-full items-center justify-center rounded border-primary-400 bg-theme-invert uppercase text-theme transition-all hover:border-4 pressed:scale-95',
                 selected && 'bg-primary-400'
             )}
-            onClick={() => onClick(value)}
+            onPress={() => onClick(value)}
             initial="hide"
             animate="show"
             variants={gameCellVariants}>
             {children}
-        </motion.button>
+        </MotionButton>
     );
 }
 
@@ -67,17 +73,18 @@ function GroupReason({ reason, members, difficulty }: GameGroup) {
     return (
         <div
             className={cn(
-                'bg-easy-500 col-span-4 col-start-1  flex flex-col items-center justify-center rounded text-center',
+                'col-span-4 col-start-1 flex  flex-col items-center justify-center rounded bg-easy-500 text-center',
                 backgroundColours[difficulty]
             )}>
-            <div>{reason}</div>
-            <div className="uppercase">{members.join(' ')}</div>
+            <div className="text-lg">{reason}</div>
+            <div className="text-sm uppercase">{members.join(', ')}</div>
         </div>
     );
 }
 export function GameGrid({ className }: WithClassNameProps) {
     const game = useGameStore();
     const matchingGroups = useGameStore((game) => getMatchingGroups(game));
+    console.log(gameToShareMessage(game, 1, true));
     return (
         <AnimatePresence mode="popLayout">
             <motion.div

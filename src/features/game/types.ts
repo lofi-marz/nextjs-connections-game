@@ -3,7 +3,7 @@ export type DailyGameDocument = {
     start: string;
     end: string;
 };
-type GameDifficulty = 0 | 1 | 2 | 3;
+export type GameDifficulty = 0 | 1 | 2 | 3;
 export type GameGroup = {
     reason: string;
     members: string[];

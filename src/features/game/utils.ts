@@ -67,7 +67,15 @@ export function checkGameEndState(state: GameState) {
         return 'win';
     return null;
 }
-
+export function createEmptyGame(): GameState {
+    return {
+        day: 0,
+        groups: [],
+        guesses: [],
+        selected: [],
+        grid: [],
+    };
+}
 export function createTestGame() {
     const emptyGame: GameState = {
         day: 0,

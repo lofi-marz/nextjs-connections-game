@@ -20,12 +20,13 @@ export default function Home({
     dayIndex,
     groups,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    console.log(dayIndex, groups)
+    console.log('Pokennections:, ', dayIndex, groups);
     const gameIsHydrated = useGameIsHydrated();
     const gameEndState = useGameStore((state) => checkGameEndState(state));
     const day = useGameStore((state) => state.day);
     const initializeGame = useGameStore((state) => state.initializeGame);
     useEffect(() => {
+        //TODO: This probably isnt right
         if (!gameIsHydrated) return;
         if (dayIndex !== day) initializeGame(dayIndex, groups);
     }, [gameIsHydrated, dayIndex, groups]);
@@ -43,7 +44,7 @@ export default function Home({
             <div className="flex min-h-screen w-full flex-col items-center justify-center ">
                 <Nav />
                 <GameWindow />
-                <GameEndDialog day={1} gameEndState={gameEndState} />
+                <GameEndDialog day={day} gameEndState={gameEndState} />
             </div>
         </main>
     );
@@ -53,17 +54,16 @@ export const getServerSideProps: GetServerSideProps<{
     groups: GameGroup[];
     dayIndex: number;
 }> = async () => {
-    console.log('Hello World');
-    const API_URL = process.env.API_URL ?? 'http://localhost:3000';
+    const API_URL = process.env.API_URL ?? 'http://localhost:3005';
     const p = new PokemonClient();
     try {
         const game = await axios
-            .get<{
-                day: number;
-                game: DailyGameDocument;
-            }>(API_URL + '/api/daily-game')
-            .then((res) => DailyGameDocumentSchema.parse(res.data));
-
+            .get<DailyGameDocument>(API_URL + '/api/daily-game')
+            .then((res) => {
+                console.log(res.data);
+                return DailyGameDocumentSchema.parse(res.data);
+            });
+        console.log('Received game:', game);
         const names = await Promise.all(
             game.groups.map(async (g) => ({
                 ...g,

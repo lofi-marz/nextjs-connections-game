@@ -58,7 +58,7 @@ export function ModalDialog({
                             className
                         )}
                         variants={dialogBoxVariants}>
-                        <Dialog className="flex h-full w-full flex-col items-center gap-6 p-6 px-5">
+                        <Dialog className="flex h-full w-full flex-col items-center gap-6 rounded-xl p-6 px-5">
                             {title && (
                                 <Heading
                                     className="py-3 text-xl font-bold lg:text-3xl"
@@ -68,7 +68,7 @@ export function ModalDialog({
                             )}
                             {hideClose || (
                                 <button
-                                    className="absolute right-0 top-0 p-4 transition-all hover:text-red-800"
+                                    className="absolute right-0 top-0 p-4 transition-all hover:text-theme"
                                     onClick={() => onOpenChange(false)}>
                                     <FaTimes />
                                 </button>

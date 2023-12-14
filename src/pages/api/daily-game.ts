@@ -85,8 +85,8 @@ export default async function handler(
             .collection<DailyGameDocument>('games');
 
         const max = await collection.countDocuments();
-        
-        const roundIndex = getGameRound() % max;
+
+        const roundIndex = getGameRound() % max; //In case we ever forget a round
         console.log(roundIndex);
         const game = await collection.findOne({ day: roundIndex });
 
@@ -96,7 +96,7 @@ export default async function handler(
         }
 
         console.log(`Pokennections ${roundIndex + 1}/${max}`);
-        return res.status(200).json({ dayIndex: roundIndex, game });
+        return res.status(200).json(game);
     } catch (e: any) {
         console.log(e);
         return res.status(500).json({

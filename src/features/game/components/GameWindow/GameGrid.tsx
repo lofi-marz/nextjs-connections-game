@@ -83,7 +83,9 @@ function GroupReason({ reason, members, difficulty }: GameGroup) {
 }
 export function GameGrid({ className }: WithClassNameProps) {
     const game = useGameStore();
-    const matchingGroups = useGameStore((game) => getMatchingGroups(game));
+    const matchingGroups = useGameStore((game) =>
+        getMatchingGroups(game).toSorted((a, b) => a.difficulty - b.difficulty)
+    );
     console.log(gameToShareMessage(game, 1, true));
     return (
         <AnimatePresence mode="popLayout">

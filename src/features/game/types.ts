@@ -5,7 +5,7 @@ export type GameDifficulty = number; //TODO: Figure this out
 const GameDifficultySchema: z.ZodType<GameDifficulty> = z
     .number()
     .int()
-    .positive()
+    .gte(0)
     .lte(3);
 export const DailyGameDocumentSchema = z.object({
     day: z.number(),

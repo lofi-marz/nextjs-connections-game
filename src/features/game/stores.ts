@@ -6,25 +6,16 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 import { getGameRound, shuffleArray } from '@/utils/utils';
 import {
     countRemainingGuesses,
+    createEmptyGame,
     createTestGame,
     findMatchingGroup,
 } from './utils';
 import { useEffect, useState } from 'react';
 
-function createEmptyGame(): GameState {
-    return {
-        day: 0,
-        groups: [],
-        guesses: [],
-        selected: [],
-        grid: [],
-    };
-}
-
 export const useGameStore = create<GameStore>()(
     persist(
         (set) => ({
-            ...createTestGame(),
+            ...createEmptyGame(),
             select: (word: string) =>
                 set((state) => {
                     if (countRemainingGuesses(state) <= 0) return state;
@@ -65,11 +56,12 @@ export const useGameStore = create<GameStore>()(
                 set((state) => ({ ...state, grid: shuffleArray(state.grid) })),
             deselectAll: () => set((state) => ({ ...state, selected: [] })),
             initializeGame: (day, groups) =>
-                set((state) =>
-                    state.guesses.length > 0
-                        ? state
-                        : { ...createEmptyGame(), day, groups }
-                ),
+                set((state) => ({
+                    ...createEmptyGame(),
+                    day,
+                    groups,
+                    grid: groups.flatMap((group) => group.members),
+                })),
         }),
         {
             name: 'pokemon-connections-game', // name of the item in the storage (must be unique)

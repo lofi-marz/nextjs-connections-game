@@ -77,6 +77,9 @@ export const getServerSideProps: GetServerSideProps<{
         return { props: { dayIndex: game.day, groups: names } };
     } catch (e) {
         console.log('Error:', e);
-        return { props: { dayIndex: 0, groups: createTestGame().groups } };
+        console.log('Returning test game');
+        const testGame = createTestGame();
+        console.log(testGame);
+        return { props: { dayIndex: -1, groups: createTestGame().groups } };
     }
 };

@@ -16,8 +16,6 @@ export function getGameRound(): number {
     return daysDifference;
 }
 
-
-
 export function shuffleArray<T>(array: T[]) {
     const newArray = [...array];
     for (let i = array.length - 1; i > 0; i--) {

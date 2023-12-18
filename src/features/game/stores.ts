@@ -60,7 +60,9 @@ export const useGameStore = create<GameStore>()(
                     ...createEmptyGame(),
                     day,
                     groups,
-                    grid: groups.flatMap((group) => group.members),
+                    grid: shuffleArray(
+                        groups.flatMap((group) => group.members)
+                    ),
                 })),
         }),
         {

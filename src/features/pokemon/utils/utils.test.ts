@@ -11,7 +11,7 @@ import {
     isMonotype,
     isGen,
     isLegendary,
-    checkPokemonConstraint
+    checkPokemonConstraint,
 } from './constraintUtils';
 //TODO: Refactor these
 const p = new PokemonClient();

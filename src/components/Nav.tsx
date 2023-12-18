@@ -10,7 +10,7 @@ export function Nav() {
     const desktop = useMediaQuery('md');
     return (
         <nav className="fixed top-0 flex w-full flex-row justify-between p-2 text-2xl md:p-8">
-            <div className="font-title flex flex-row items-center justify-center gap-[1ch] rounded pr-2 text-sm font-bold transition-all hover:-translate-y-1 sm:text-3xl">
+            <div className="flex flex-row items-center justify-center gap-[1ch] rounded pr-2 font-title text-sm font-bold transition-all hover:-translate-y-1 sm:text-3xl">
                 <Logo />
                 pokennections
             </div>

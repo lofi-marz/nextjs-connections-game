@@ -49,7 +49,7 @@ export function gameToShareMessage(
         title,
         guessString,
 
-        'Play here: https://degreedle.vercel.app',
+        'Play here: https://pokennections.vercel.app/',
     ].join('\n');
 
     return shareMessage;

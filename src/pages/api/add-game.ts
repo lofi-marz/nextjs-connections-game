@@ -4,7 +4,11 @@ import path from 'path';
 import fs from 'fs/promises';
 
 import { getGameRound } from '@/utils/utils';
-import { DailyGameDocument, GameGroup } from '@/features/game/types';
+import {
+    DailyGameDocument,
+    DailyGameDocumentSchema,
+    GameGroup,
+} from '@/features/game/types';
 import { PokemonClient } from 'pokenode-ts';
 import { createTestGame } from '@/features/game/utils';
 async function loadTxts() {
@@ -65,8 +69,12 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
+    if (req.body.token !== process.env.NEXT_PUBLIC_API_TOKEN)
+        return res.status(401).json({ error: 'Unauthorized' });
+    console.log(req.body);
     try {
         const client = await getClient();
+        const game = DailyGameDocumentSchema.parse(req.body.game);
         /*let testGame = createTestGame();
         await Promise.all(
             testGame.groups.map(async (g) => {
@@ -84,19 +92,8 @@ export default async function handler(
             .db('connections-pokemon')
             .collection<DailyGameDocument>('games');
 
-        const max = await collection.countDocuments();
-
-        const roundIndex = 2; //getGameRound() % max; //In case we ever forget a round
-        console.log(roundIndex);
-        const game = await collection.findOne({ day: roundIndex });
-
-        if (!game) {
-            res.status(404);
-            return res.json('Game not found');
-        }
-
-        console.log(`Pokennections ${roundIndex + 1}/${max}`);
-        return res.status(200).json(game);
+        const insertedGame = await collection.insertOne(game);
+        return res.status(200).json(insertedGame);
     } catch (e: any) {
         console.log(e);
         return res.status(500).json({

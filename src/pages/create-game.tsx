@@ -141,7 +141,9 @@ export default function CreateGame() {
                     </div>
                     <div className="flex h-full flex-col">
                         {[...new Array(4)].map((_, i) => (
-                            <div className="flex grow flex-col">
+                            <div
+                                className="flex grow flex-col"
+                                key={`row-${i}`}>
                                 <input
                                     type="range"
                                     min="0"

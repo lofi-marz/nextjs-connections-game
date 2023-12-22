@@ -68,6 +68,10 @@ export default function Home({
                 />
                 <meta name="msapplication-TileColor" content="#da532c" />
                 <meta name="theme-color" content="#ffffff" />
+                <meta
+                    name="google-site-verification"
+                    content="BFFC2gymsTAg2Gl1xwlpD2O_FE1LfXV0frxo9op1c9s"
+                />
             </Head>
             <div className="flex min-h-screen w-full flex-col items-center justify-center ">
                 <Nav />

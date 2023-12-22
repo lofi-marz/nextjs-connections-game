@@ -1,4 +1,9 @@
 import { MAX_GUESSES } from '../../consts';
+import {
+    CORRECT_GUESS_MESSAGE,
+    INCORRECT_GUESS_MESSAGE,
+    ONE_WRONG_GUESS_MESSAGE,
+} from './consts';
 import { GameDifficulty, GameGroup, GameState } from './types';
 
 export function findMatchingGroup(guess: string[], state: GameState) {
@@ -7,6 +12,31 @@ export function findMatchingGroup(guess: string[], state: GameState) {
     );
 }
 
+export function findGroupIndexesForGuess(guess: string[], state: GameState) {
+    return guess.map((w) => findBelongingGroupIndex(w, state));
+}
+
+function countFrequencies<T extends string | number>(array: T[]) {
+    return array.reduce(
+        (acc, item) => {
+            acc[item] = (acc[item] ?? 0) + 1;
+            return acc;
+        },
+        {} as Record<T, number>
+    );
+}
+export function getHintMessage(guessIndexes: number[]) {
+    const frequencies = Object.values(countFrequencies(guessIndexes));
+    if (frequencies.some((v) => v === guessIndexes.length))
+        return CORRECT_GUESS_MESSAGE;
+    if (frequencies.some((v) => v === guessIndexes.length - 1))
+        return ONE_WRONG_GUESS_MESSAGE;
+    return INCORRECT_GUESS_MESSAGE;
+}
+
+function findBelongingGroupIndex(word: string, state: GameState) {
+    return state.groups.findIndex(({ members }) => members.includes(word));
+}
 function findBelongingGroup(word: string, state: GameState) {
     return state.groups.find(({ members }) => members.includes(word));
 }

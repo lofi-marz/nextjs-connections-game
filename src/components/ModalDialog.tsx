@@ -47,7 +47,7 @@ export function ModalDialog({
                 <MotionModalOverlay
                     isOpen
                     onOpenChange={onOpenChange}
-                    className="fixed left-0 top-0 z-50 flex h-screen w-screen flex-col items-center justify-center bg-black/50 px-2 text-xl lg:pt-24"
+                    className="fixed left-0 top-0 z-40 flex h-screen w-screen flex-col items-center justify-center bg-black/50 px-2 text-xl lg:pt-24"
                     variants={dialogBoxContainerVariants}
                     initial="hide"
                     animate="show"

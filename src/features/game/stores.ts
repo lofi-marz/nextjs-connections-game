@@ -1,16 +1,18 @@
 import { create } from 'zustand';
 
-import { GameGroup, GameState, GameStore } from './types';
-import { MAX_GUESSES, MAX_SELECTED } from 'consts';
+import { GameStore } from './types';
+import { MAX_SELECTED } from 'consts';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { getGameRound, shuffleArray } from '@/utils/utils';
+import { shuffleArray } from '@/utils/utils';
 import {
     countRemainingGuesses,
     createEmptyGame,
-    createTestGame,
+    findGroupIndexesForGuess,
     findMatchingGroup,
+    getHintMessage,
 } from './utils';
 import { useEffect, useState } from 'react';
+import { toastQueue } from '@/components/toast';
 
 export const useGameStore = create<GameStore>()(
     persist(
@@ -34,6 +36,10 @@ export const useGameStore = create<GameStore>()(
                     if (!members) members = state.selected;
                     if (members.length < MAX_SELECTED) return state;
                     const match = findMatchingGroup(members, state);
+                    const indexes = findGroupIndexesForGuess(members, state);
+                    const hintMessage = getHintMessage(indexes);
+                    console.log('Hint message:', hintMessage);
+                    toastQueue.add(hintMessage, { timeout: 2000 });
                     if (match) {
                         console.log('Match!', match);
                         return {
@@ -45,6 +51,7 @@ export const useGameStore = create<GameStore>()(
                             ),
                         };
                     }
+
                     return {
                         ...state,
                         selected: [],

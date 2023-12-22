@@ -16,13 +16,18 @@ import { z } from 'zod';
 import { DailyGameDocumentSchema } from '../features/game/types';
 import { useEffect } from 'react';
 import { PokemonClient } from 'pokenode-ts';
+import { toastQueue } from '@/components/toast';
+
 export default function Home({
     dayIndex,
     groups,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     console.log('Pokennections:, ', dayIndex, groups);
+
     const gameIsHydrated = useGameIsHydrated();
-    const gameEndState = useGameStore((state) => checkGameEndState(state));
+    const gameEndState = useGameStore((state) =>
+        gameIsHydrated ? null : checkGameEndState(state)
+    );
     const day = useGameStore((state) => state.day);
     const initializeGame = useGameStore((state) => state.initializeGame);
     useEffect(() => {
@@ -34,7 +39,7 @@ export default function Home({
     return (
         <main
             className={cn(
-                'flex min-h-screen w-full flex-col items-center justify-center bg-theme font-sans ',
+                'flex min-h-screen w-screen flex-col items-center justify-center bg-theme font-sans ',
                 sans.variable
             )}>
             <Head>
@@ -97,6 +102,7 @@ export const getServerSideProps: GetServerSideProps<{
                 ),
             }))
         );
+
         return { props: { dayIndex: game.day, groups: names } };
     } catch (e) {
         console.log('Error:', e);

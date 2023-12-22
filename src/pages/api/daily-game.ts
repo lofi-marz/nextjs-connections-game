@@ -86,7 +86,7 @@ export default async function handler(
 
         const max = await collection.countDocuments();
 
-        const roundIndex = 2; //getGameRound() % max; //In case we ever forget a round
+        const roundIndex = getGameRound() % max; //In case we ever forget a round
         console.log(roundIndex);
         const game = await collection.findOne({ day: roundIndex });
 

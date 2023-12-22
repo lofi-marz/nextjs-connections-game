@@ -1,8 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import { GameState } from './types';
-import { checkGameEndState } from './utils';
+import { checkGameEndState, getHintMessage } from './utils';
+import {
+    INCORRECT_GUESS_MESSAGE,
+    ONE_WRONG_GUESS_MESSAGE,
+    CORRECT_GUESS_MESSAGE,
+} from './consts';
 
 const emptyGame: GameState = {
+    day: 0,
     groups: [],
     guesses: [],
     selected: [],
@@ -52,5 +58,20 @@ describe('Game Utils', () => {
     });
     it('checkGameEndState correctly recognises continue', () => {
         expect(checkGameEndState(testGame)).toBeNull();
+    });
+
+    describe('Guess Message', () => {
+        it('produces correct message for correct guess', () => {
+            const group = [1, 1, 1, 1];
+            expect(getHintMessage(group)).toBe(CORRECT_GUESS_MESSAGE);
+        });
+        it('produces correct message for guess with 1 wrong', () => {
+            const group = [0, 1, 1, 1];
+            expect(getHintMessage(group)).toBe(ONE_WRONG_GUESS_MESSAGE);
+        });
+        it('produces correct message for more than 1 wrong', () => {
+            const group = [1, 0, 0, 2];
+            expect(getHintMessage(group)).toBe(INCORRECT_GUESS_MESSAGE);
+        });
     });
 });

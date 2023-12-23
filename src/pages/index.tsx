@@ -26,7 +26,7 @@ export default function Home({
 
     const gameIsHydrated = useGameIsHydrated();
     const gameEndState = useGameStore((state) =>
-        gameIsHydrated ? null : checkGameEndState(state)
+        gameIsHydrated ? checkGameEndState(state) : null
     );
     const day = useGameStore((state) => state.day);
     const initializeGame = useGameStore((state) => state.initializeGame);

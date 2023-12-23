@@ -5,6 +5,7 @@ import { gameToShareMessage } from '../utils';
 import { FaClipboard } from 'react-icons/fa6';
 import { Button } from 'react-aria-components';
 import { useEffect, useState } from 'react';
+import { toastQueue } from '@/components/toast';
 
 export function GameEndDialog({
     day,
@@ -27,10 +28,17 @@ export function GameEndDialog({
     const shareMessage = gameToShareMessage(game, day, hasWon);
     const [isOpen, setIsOpen] = useState(false);
 
-    const copy = () => navigator.clipboard.writeText(shareMessage);
+    const copy = () => {
+        try {
+            navigator.clipboard.writeText(shareMessage);
+            toastQueue.add('📋 Share message copied', { timeout: 2000 });
+        } catch (e) {
+            console.log('Error copying message');
+        }
+    };
     return (
         <ModalDialog title={title} isOpen={isOpen} onOpenChange={setIsOpen}>
-            <div className="relative whitespace-pre rounded-xl bg-dark/10 p-5 font-mono">
+            <div className="relative whitespace-pre rounded-xl bg-dark/10 p-5 font-mono text-xs sm:text-base">
                 <Button
                     className="absolute right-2 top-2 flex flex-row items-center justify-center rounded-xl bg-primary-400 px-4 py-2 font-semibold transition-all hover:scale-105 pressed:scale-95"
                     onPress={copy}>

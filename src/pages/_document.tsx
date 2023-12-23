@@ -9,7 +9,7 @@ export default function Document() {
             <Head />
             <body
                 className={cn(
-                    'flex items-center justify-center',
+                    'flex h-screen items-center justify-center',
                     sans.variable,
                     title.variable
                 )}>

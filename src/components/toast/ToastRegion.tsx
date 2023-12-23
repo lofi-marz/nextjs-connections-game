@@ -16,7 +16,7 @@ export function ToastRegion<T extends React.ReactNode>({
         <div
             {...regionProps}
             ref={ref}
-            className="absolute bottom-0 z-50 mx-auto flex flex-col gap-4 p-4">
+            className="fixed bottom-0 z-50 mx-auto flex flex-col gap-4 p-4">
             <AnimatePresence>
                 {state.visibleToasts.map((toast) => (
                     <Toast key={toast.key} toast={toast} state={state} />

@@ -64,7 +64,7 @@ function GameRemainingShots() {
 export function GameWindow() {
     return (
         <div className="mx-auto flex w-full grow flex-col items-center justify-center">
-            <div className="mx-auto flex w-full max-w-2xl flex-col items-center justify-center gap-6 px-4 py-12 sm:p-12 lg:max-w-3xl">
+            <div className="mx-auto flex w-full max-w-2xl flex-col items-center justify-center gap-6 px-4 pb-12 sm:p-12 lg:max-w-3xl">
                 <GameGrid />
                 <GameRemainingShots />
                 <GameControls />

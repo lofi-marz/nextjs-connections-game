@@ -73,7 +73,7 @@ export default function Home({
                     content="BFFC2gymsTAg2Gl1xwlpD2O_FE1LfXV0frxo9op1c9s"
                 />
             </Head>
-            <div className="flex min-h-screen w-full flex-col items-center justify-center ">
+            <div className="flex h-screen w-full flex-col items-center justify-start">
                 <Nav />
                 <GameWindow />
                 <GameEndDialog day={day} gameEndState={gameEndState} />

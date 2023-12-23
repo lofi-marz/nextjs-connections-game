@@ -9,8 +9,8 @@ export function Nav() {
     const [dialogOpen, setDialogOpen] = useState(false);
     const desktop = useMediaQuery('md');
     return (
-        <nav className="fixed top-0 flex w-full flex-row justify-between p-2 text-2xl md:p-8">
-            <div className="flex flex-row items-center justify-center gap-[1ch] rounded pr-2 font-title text-sm font-bold transition-all hover:-translate-y-1 sm:text-3xl">
+        <nav className="top-0 flex w-full flex-row justify-between p-2 text-2xl md:p-8">
+            <div className="flex flex-row items-center justify-center gap-[1ch] rounded pr-2 font-title text-base font-bold transition-all hover:-translate-y-1 sm:text-3xl">
                 <Logo />
                 pokennections
             </div>

@@ -6,6 +6,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { NextSeo } from 'next-seo';
 import { GlobalToastRegion } from '@/components/toast';
 import { useEffect, useState } from 'react';
+
 const queryClient = new QueryClient();
 export default function MyApp({ Component, pageProps }: AppProps) {
     const [mounted, setMounted] = useState(false);

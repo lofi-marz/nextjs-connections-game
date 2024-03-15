@@ -19,7 +19,7 @@ export function PokemonSprite({
     return (
         <span className={cn('relative h-full w-full', className)}>
             {sprite && (
-                <Image
+                <img
                     className="object-cover drop-shadow-2xl"
                     src={sprite}
                     alt={`Sprite for ${pokemon}`}

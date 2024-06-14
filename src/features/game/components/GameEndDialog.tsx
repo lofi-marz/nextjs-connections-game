@@ -49,7 +49,7 @@ export function GameEndDialog({
 			navigator.share({
 				title: 'Pokennections',
 				text: shareMessage,
-				url: 'https://pokennections.vercel.app',
+				url: 'https://pkn.omarileon.me',
 			});
 			toastQueue.add('📋 Share message copied', { timeout: 2000 });
 		}  catch (e) {

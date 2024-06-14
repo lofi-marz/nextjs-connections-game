@@ -79,7 +79,7 @@ export function gameToShareMessage(
         title,
         guessString,
 
-        'Play here: https://pokennections.vercel.app/',
+        'Play here: https://pkn.omarileon.me',
     ].join('\n');
 
     return shareMessage;

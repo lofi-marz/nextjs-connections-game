@@ -1,10 +1,10 @@
+import { GlobalToastRegion } from '@/components/toast';
 import { getDailyGame } from '@/features/game/api';
 import { GameStoreProvider } from '@/features/game/provider';
 import { createEmptyGame } from '@/features/game/utils';
 import { sans } from '@/styles/fonts';
 import { cn, shuffleArray } from '@/utils/utils';
-
-import { GlobalToastRegion } from '@/components/toast';
+import { Analytics } from '@vercel/analytics/react';
 import { Nav } from '../components';
 import '../styles/globals.css';
 import { Providers } from './providers';
@@ -34,6 +34,7 @@ export default async function RootLayout({
                         <GlobalToastRegion />
                     </Providers>
                 </GameStoreProvider>
+				<Analytics />
             </body>
         </html>
     );

@@ -1,12 +1,15 @@
 import { cn } from '@/utils/utils';
 import Image from 'next/image';
 import { PokemonClient } from 'pokenode-ts';
+import { memo } from 'react';
 import { useQuery } from 'react-query';
 import { WithClassNameProps } from 'types';
-export function PokemonSprite({
+
+type PokemonSpriteProps = { pokemon: string } & WithClassNameProps;
+export const PokemonSprite = memo(function PokemonSprite({
     pokemon,
     className,
-}: { pokemon: string } & WithClassNameProps) {
+}: PokemonSpriteProps) {
     //const src = pokedex.find((p) => p.value === pokemon)?.sprite!;
     const p = new PokemonClient(); //TODO: Context
     const { data } = useQuery({
@@ -29,4 +32,4 @@ export function PokemonSprite({
             )}
         </span>
     );
-}
+});

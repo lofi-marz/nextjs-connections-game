@@ -1,11 +1,11 @@
-import { describe, it, expect } from 'vitest';
-import { GameState } from './types';
-import { checkGameEndState, getHintMessage } from './utils';
+import { describe, expect, it } from 'vitest';
 import {
-    INCORRECT_GUESS_MESSAGE,
-    ONE_WRONG_GUESS_MESSAGE,
-    CORRECT_GUESS_MESSAGE,
+	CORRECT_GUESS_MESSAGE,
+	INCORRECT_GUESS_MESSAGE,
+	ONE_WRONG_GUESS_MESSAGE,
 } from './consts';
+import { GameState } from './types';
+import { checkGameEndState, createTestGame, gamesAreEqual, getHintMessage } from './utils';
 
 const emptyGame: GameState = {
     day: 0,
@@ -74,4 +74,18 @@ describe('Game Utils', () => {
             expect(getHintMessage(group)).toBe(INCORRECT_GUESS_MESSAGE);
         });
     });
+
+	describe('gamesAreEqual', () => {
+		it('returns true for equal games', () => {
+			const game1 = createTestGame();
+			const game2 = createTestGame();
+			expect(gamesAreEqual(game1, game2)).toBe(true);
+		});
+		it('returns false for unequal games', () => {
+			const game1 = createTestGame();
+			const game2 = createTestGame();
+			game2.groups[0].members = ['venusaur', 'bellsprout', 'roserade', 'oddish'];
+			expect(gamesAreEqual(game1, game2)).toBe(false);
+		});
+	})
 });

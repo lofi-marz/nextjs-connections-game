@@ -1,4 +1,4 @@
-import { Inter, Rubik, Rubik_Mono_One, Teko } from 'next/font/google';
+import { Rubik, Teko } from 'next/font/google';
 export const title = Teko({
     subsets: ['latin'],
     weight: '400',

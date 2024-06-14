@@ -1,24 +1,22 @@
+'use client';
 import {
-    DailyGameDocument,
-    GameDifficulty,
-    GameGroup,
+	DailyGameDocument,
+	GameDifficulty,
+	GameGroup,
 } from '@/features/game/types';
-import { sans } from '@/styles/fonts';
-import { MAX_SELECTED } from 'consts';
-import { useEffect } from 'react';
-import {
-    Control,
-    SubmitHandler,
-    UseFormRegister,
-    useFieldArray,
-    useForm,
-} from 'react-hook-form';
-import { FaPlus } from 'react-icons/fa6';
-import { cn } from '../utils';
-import { PokemonClient } from 'pokenode-ts';
-import { UseQueryResult, useQueries } from 'react-query';
 import { PokemonSprite } from '@/features/pokemon/components/PokemonSprite';
+import { sans } from '@/styles/fonts';
+import { cn } from '@/utils';
 import axios from 'axios';
+import { PokemonClient } from 'pokenode-ts';
+
+import {
+	Control,
+	SubmitHandler,
+	UseFormRegister,
+	useForm
+} from 'react-hook-form';
+import { UseQueryResult, useQueries } from 'react-query';
 type GameForm = {
     day: number;
     token: string;

@@ -9,6 +9,7 @@ import {
 	createEmptyGame,
 	findGroupIndexesForGuess,
 	findMatchingGroup,
+	gamesAreEqual,
 	getHintMessage,
 } from './utils';
 
@@ -74,7 +75,7 @@ export const createGameStore = (initState: GameState) => createStore<GameStore>(
             name: 'pokemon-connections-game', // name of the item in the storage (must be unique)
             storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
 			merge: (persisted,  current) => {
-				if ((persisted as GameState).day !== current.day) return current;
+				if (gamesAreEqual(persisted as GameState, current as GameState)) return current;
 				return ({...current,  ...(persisted as GameState)});
 			},
         }

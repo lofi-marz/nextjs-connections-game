@@ -1,8 +1,8 @@
 import { MAX_GUESSES } from '../../consts';
 import {
-    CORRECT_GUESS_MESSAGE,
-    INCORRECT_GUESS_MESSAGE,
-    ONE_WRONG_GUESS_MESSAGE,
+	CORRECT_GUESS_MESSAGE,
+	INCORRECT_GUESS_MESSAGE,
+	ONE_WRONG_GUESS_MESSAGE,
 } from './consts';
 import { GameDifficulty, GameGroup, GameState } from './types';
 
@@ -142,4 +142,12 @@ export function createTestGame() {
 
     testGame.grid = testGame.groups.flatMap((group) => group.members);
     return testGame;
+}
+
+export function gamesAreEqual(game1: GameState, game2: GameState) 
+{
+	if (game1.day !== game2.day) return false;
+	const groups1 = game1.groups;
+	const groups2 = game2.groups;
+	return groups1.every((g1, i) => g1.members.every((m) => groups2[i].members.includes(m)));
 }

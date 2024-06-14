@@ -1,12 +1,11 @@
 import { getClient } from '@/utils/mongodb';
+import fs from 'fs/promises';
 import { NextApiRequest, NextApiResponse } from 'next';
 import path from 'path';
-import fs from 'fs/promises';
 
+import { DailyGameDocument } from '@/features/game/types';
 import { getGameRound } from '@/utils/utils';
-import { DailyGameDocument, GameGroup } from '@/features/game/types';
 import { PokemonClient } from 'pokenode-ts';
-import { createTestGame } from '@/features/game/utils';
 async function loadTxts() {
     const fullPath = path.resolve(process.cwd(), 'games');
     const dir = await fs.readdir(fullPath);

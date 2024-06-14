@@ -1,11 +1,12 @@
+'use client';
 import { ModalDialog } from '@/components/ModalDialog';
-import { GameEndState, GameState } from '../types';
-import { useGameStore } from '../stores';
-import { gameToShareMessage } from '../utils';
-import { FaClipboard } from 'react-icons/fa6';
-import { Button } from 'react-aria-components';
-import { useEffect, useState } from 'react';
 import { toastQueue } from '@/components/toast';
+import { useEffect, useState } from 'react';
+import { Button } from 'react-aria-components';
+import { FaClipboard } from 'react-icons/fa6';
+import { useGameStore } from '../provider';
+import { GameEndState } from '../types';
+import { gameToShareMessage } from '../utils';
 
 export function GameEndDialog({
     day,
@@ -40,7 +41,7 @@ export function GameEndDialog({
         <ModalDialog title={title} isOpen={isOpen} onOpenChange={setIsOpen}>
             <div className="relative whitespace-pre rounded-xl bg-dark/10 p-5 font-mono text-xs sm:text-base">
                 <Button
-                    className="absolute right-2 top-2 flex flex-row items-center justify-center rounded-xl bg-primary-400 px-4 py-2 font-semibold transition-all hover:scale-105 pressed:scale-95"
+                    className="absolute right-2 top-2 flex flex-row items-center justify-center rounded-xl bg-primary px-4 py-2 font-semibold transition-all hover:scale-105 pressed:scale-95"
                     onPress={copy}>
                     Copy <FaClipboard />
                 </Button>

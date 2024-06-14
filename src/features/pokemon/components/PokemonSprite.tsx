@@ -1,8 +1,7 @@
-import { PokemonClient } from 'pokenode-ts';
-import { pokedex } from '../utils/constraintUtils';
-import Image from 'next/image';
-import { useQuery } from 'react-query';
 import { cn } from '@/utils/utils';
+import Image from 'next/image';
+import { PokemonClient } from 'pokenode-ts';
+import { useQuery } from 'react-query';
 import { WithClassNameProps } from 'types';
 export function PokemonSprite({
     pokemon,

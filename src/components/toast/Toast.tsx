@@ -26,7 +26,7 @@ export function Toast<T extends React.ReactNode>({
         <motion.div
             {...(toastProps as typeof motion.div)}
             ref={ref}
-            className="flex flex-row gap-2 rounded-xl bg-primary-400 p-6 font-sans font-semibold"
+            className="flex flex-row gap-2 rounded-xl bg-primary p-6 font-sans font-semibold"
             initial="hide"
             animate="show"
             exit="hide"

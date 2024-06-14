@@ -1,8 +1,8 @@
+'use client';
 import { ToastQueue, useToastQueue } from '@react-stately/toast';
 import { createPortal } from 'react-dom';
 import { ToastRegion } from './ToastRegion';
-import { InfoToast, ToastRegionProps } from './types';
-import { Toast } from './Toast';
+import { ToastRegionProps } from './types';
 
 // Create a global toast queue.
 export const toastQueue = new ToastQueue<string>({

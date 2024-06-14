@@ -1,9 +1,10 @@
+'use client';
 import { useToastRegion } from '@react-aria/toast';
 import { useRef } from 'react';
 import { Toast } from './Toast';
 
-import { ToastRegionProps } from './types';
 import { AnimatePresence } from 'framer-motion';
+import { ToastRegionProps } from './types';
 
 export function ToastRegion<T extends React.ReactNode>({
     state,

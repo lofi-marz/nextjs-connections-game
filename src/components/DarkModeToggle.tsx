@@ -1,8 +1,10 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+'use client';
+
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FaMoon, FaSun } from 'react-icons/fa';
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import { FaMoon, FaSun } from 'react-icons/fa';
 import { cn } from '../utils';
 
 export function DarkModeSpacer() {
@@ -23,7 +25,7 @@ export function DarkModeToggle({ className }: { className?: string }) {
         <motion.button
             layout
             className={clsx(
-                'flex aspect-[2/1] flex-col rounded bg-primary-400 transition-all duration-500 hover:bg-theme-invert hover:text-theme',
+                'flex aspect-[2/1] flex-col rounded bg-primary transition-all duration-500 hover:bg-theme-invert hover:text-theme',
                 resolvedTheme === 'dark' ? 'items-end' : 'items-start',
                 className
             )}

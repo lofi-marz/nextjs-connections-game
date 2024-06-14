@@ -1,23 +1,21 @@
-import { create } from 'zustand';
-
-import { GameStore } from './types';
-import { MAX_SELECTED } from 'consts';
-import { persist, createJSONStorage } from 'zustand/middleware';
-import { shuffleArray } from '@/utils/utils';
-import {
-    countRemainingGuesses,
-    createEmptyGame,
-    findGroupIndexesForGuess,
-    findMatchingGroup,
-    getHintMessage,
-} from './utils';
-import { useEffect, useState } from 'react';
 import { toastQueue } from '@/components/toast';
+import { shuffleArray } from '@/utils/utils';
+import { MAX_SELECTED } from 'consts';
+import { createJSONStorage, persist } from 'zustand/middleware';
+import { createStore } from 'zustand/vanilla';
+import { GameState, GameStore } from './types';
+import {
+	countRemainingGuesses,
+	createEmptyGame,
+	findGroupIndexesForGuess,
+	findMatchingGroup,
+	getHintMessage,
+} from './utils';
 
-export const useGameStore = create<GameStore>()(
+export const createGameStore = (initState: GameState) => createStore<GameStore>()(
     persist(
         (set) => ({
-            ...createEmptyGame(),
+            ...initState,
             select: (word: string) =>
                 set((state) => {
                     if (countRemainingGuesses(state) <= 0) return state;
@@ -75,31 +73,11 @@ export const useGameStore = create<GameStore>()(
         {
             name: 'pokemon-connections-game', // name of the item in the storage (must be unique)
             storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
+			merge: (persisted,  current) => {
+				if ((persisted as GameState).day !== current.day) return current;
+				return ({...current,  ...(persisted as GameState)});
+			},
         }
     )
 );
 
-export const useGameIsHydrated = () => {
-    const [hydrated, setHydrated] = useState(false);
-
-    useEffect(() => {
-        // Note: This is just in case you want to take into account manual rehydration.
-        // You can remove the following line if you don't need it.
-        const unsubHydrate = useGameStore.persist.onHydrate(() =>
-            setHydrated(false)
-        );
-
-        const unsubFinishHydration = useGameStore.persist.onFinishHydration(
-            () => setHydrated(true)
-        );
-
-        setHydrated(useGameStore.persist.hasHydrated());
-
-        return () => {
-            unsubHydrate();
-            unsubFinishHydration();
-        };
-    }, []);
-
-    return hydrated;
-};

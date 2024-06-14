@@ -1,16 +1,15 @@
+'use client';
 import { PokemonSprite } from '@/features/pokemon/components/PokemonSprite';
 import { cn } from '@/utils/utils';
-import { useEffect, useState } from 'react';
-import { WithChildrenProps, WithClassNameProps } from 'types';
-import { useGameStore } from '../../stores';
 import { AnimatePresence, Variants, motion } from 'framer-motion';
+import { Button } from 'react-aria-components';
+import { WithChildrenProps, WithClassNameProps } from 'types';
+import { useGameStore } from '../../provider';
 import { GameGroup } from '../../types';
 import {
-    findMatchingGroup,
-    gameToShareMessage,
-    getMatchingGroups,
+	gameToShareMessage,
+	getMatchingGroups
 } from '../../utils';
-import { Button } from 'react-aria-components';
 
 const gameCellVariants: Variants = {
     hide: {},
@@ -30,8 +29,8 @@ function GameCell({
     return (
         <MotionButton
             className={cn(
-                'relative flex h-full w-full items-center justify-center rounded border-primary-400 bg-theme-invert text-xs uppercase text-theme transition-all hover:border-4 pressed:scale-95  sm:text-base lg:text-lg',
-                selected && 'bg-primary-400'
+                'relative flex h-full w-full items-center justify-center rounded border-primary bg-theme-invert text-xs uppercase text-theme transition-all hover:border-4 pressed:scale-95  sm:text-base lg:text-lg',
+                selected && 'bg-primary'
             )}
             onPress={() => onClick(value)}
             initial="hide"
@@ -82,7 +81,7 @@ function GroupReason({ reason, members, difficulty }: GameGroup) {
     );
 }
 export function GameGrid({ className }: WithClassNameProps) {
-    const game = useGameStore();
+    const game = useGameStore((state) => state);
     const matchingGroups = useGameStore((game) =>
         getMatchingGroups(game).toSorted((a, b) => a.difficulty - b.difficulty)
     );

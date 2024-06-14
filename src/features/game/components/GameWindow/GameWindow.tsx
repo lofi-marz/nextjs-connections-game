@@ -1,11 +1,10 @@
-import { useState } from 'react';
-import { GameGrid } from './GameGrid';
-import { GameControls } from './GameControls';
-import { useGameStore } from '../../stores';
-import { countRemainingGuesses } from '../../utils';
-import { MAX_GUESSES } from 'consts';
+'use client';
+import { useGameStore } from '@/features/game/provider';
 import { cn } from '@/utils/utils';
 import { AnimatePresence, Variants, motion } from 'framer-motion';
+import { countRemainingGuesses } from '../../utils';
+import { GameControls } from './GameControls';
+import { GameGrid } from './GameGrid';
 function easeInBack(x: number): number {
     const c1 = 1.70158;
     const c3 = c1 + 1;

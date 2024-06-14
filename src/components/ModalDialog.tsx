@@ -1,5 +1,6 @@
-import { useState, type PropsWithChildren } from 'react';
+'use client';
 import { AnimatePresence, Variants, motion } from 'framer-motion';
+import { useState, type PropsWithChildren } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { WithClassNameProps } from 'types';
 import { cn } from 'utils';
@@ -54,7 +55,7 @@ export function ModalDialog({
                     exit="hide">
                     <MotionModal
                         className={cn(
-                            'relative -mt-48 flex w-full max-w-xl flex-col  items-center justify-center gap-6  rounded-xl bg-primary-500 font-sans text-base text-light drop-shadow',
+                            'relative -mt-48 flex w-full max-w-xl flex-col  items-center justify-center gap-6  rounded-xl bg-primary font-sans text-base text-light drop-shadow',
                             className
                         )}
                         variants={dialogBoxVariants}>

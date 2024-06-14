@@ -1,7 +1,7 @@
 import { cn } from '@/utils/utils';
-import { useGameStore } from '../../stores';
-import { Button, ButtonProps } from 'react-aria-components';
 import { MAX_SELECTED } from 'consts';
+import { Button, ButtonProps } from 'react-aria-components';
+import { useGameStore } from '../../provider';
 function GameControlButton(props: ButtonProps) {
     return (
         <Button
@@ -29,7 +29,7 @@ export function GameControls() {
             <GameControlButton
                 onPress={() => submitGuess()}
                 isDisabled={selectedCount < MAX_SELECTED}
-                className="bg-primary-400 text-grey-50 disabled:text-theme">
+                className="bg-primary text-grey-50 disabled:text-theme">
                 Submit
             </GameControlButton>
         </div>
